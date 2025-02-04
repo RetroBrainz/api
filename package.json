@@ -2,17 +2,21 @@
   "name": "api",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
-  "license": "UNLICENSED",
-  "scripts": {
-    "start": "node bin/server.js",
-    "build": "node ace build",
-    "dev": "node ace serve --hmr",
-    "test": "node ace test",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+  "homepage": "https://github.com/RetroBrainz/api#readme",
+  "bugs": {
+    "url": "https://github.com/RetroBrainz/api/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RetroBrainz/api.git"
+  },
+  "funding": "https://github.com/sponsors/RetroBrainz",
+  "license": "UNLICENSED",
+  "author": {
+    "name": "鹤仙",
+    "email": "guoyunhe.gyh@alibaba-inc.com"
+  },
+  "type": "module",
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
     "#exceptions/*": "./app/exceptions/*.js",
@@ -31,34 +35,87 @@
     "#tests/*": "./tests/*.js",
     "#config/*": "./config/*.js"
   },
-  "devDependencies": {
-    "@adonisjs/assembler": "^7.8.2",
-    "@adonisjs/eslint-config": "^2.0.0-beta.6",
-    "@adonisjs/prettier-config": "^1.4.0",
-    "@adonisjs/tsconfig": "^1.4.0",
-    "@japa/api-client": "^2.0.4",
-    "@japa/assert": "^3.0.0",
-    "@japa/plugin-adonisjs": "^3.0.1",
-    "@japa/runner": "^3.1.4",
-    "@swc/core": "1.10.1",
-    "@types/luxon": "^3.4.2",
-    "@types/node": "^22.10.2",
-    "eslint": "^9.17.0",
-    "hot-hook": "^0.4.0",
-    "pino-pretty": "^13.0.0",
-    "prettier": "^3.4.2",
-    "ts-node-maintained": "^10.9.4",
-    "typescript": "~5.7"
+  "scripts": {
+    "build": "node ace build",
+    "ci:eslint": "eslint -f json src -o ./.ci/eslint.json",
+    "dev": "node ace serve --hmr",
+    "format": "prettier --write .",
+    "lint": "eslint . && stylelint \"**/*.{css,less,scss}\"",
+    "lint:fix": "prettier --write . && eslint --fix . && stylelint --fix \"**/*.{css,less,scss}\"",
+    "prepare": "husky",
+    "start": "node bin/server.js",
+    "test": "node ace test",
+    "typecheck": "tsc --noEmit"
+  },
+  "commitlint": {
+    "extends": [
+      "ali"
+    ]
+  },
+  "lint-staged": {
+    "*.{cjs,cts,js,jsx,mjs,mts,ts,tsx,vue}": "eslint --fix",
+    "*.{css,less,scss}": "stylelint --fix",
+    "*.{cjs,css,cts,html,js,json,jsx,less,md,mjs,mts,scss,ts,tsx,vue,yaml,yml}": "prettier --write"
+  },
+  "prettier": "prettier-config-ali",
+  "eslintConfig": {
+    "extends": [
+      "plugin:prettier/recommended"
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-ali",
+      "stylelint-prettier/recommended"
+    ]
+  },
+  "resolutions": {
+    "strtok3": "8.0.1"
   },
   "dependencies": {
-    "@adonisjs/auth": "^9.2.4",
-    "@adonisjs/core": "^6.17.0",
+    "@adonisjs/auth": "^9.3.1",
+    "@adonisjs/core": "^6.17.1",
     "@adonisjs/cors": "^2.2.1",
-    "@adonisjs/lucid": "^21.5.1",
+    "@adonisjs/lucid": "^21.6.0",
     "@vinejs/vine": "^3.0.0",
     "luxon": "^3.5.0",
     "mysql2": "^3.12.0",
     "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/eslint-config": "2.0.0-beta.7",
+    "@adonisjs/prettier-config": "^1.4.0",
+    "@adonisjs/tsconfig": "^1.4.0",
+    "@commitlint/cli": "^19.7.1",
+    "@japa/api-client": "^2.0.4",
+    "@japa/assert": "^3.0.0",
+    "@japa/plugin-adonisjs": "^3.0.2",
+    "@japa/runner": "^3.1.4",
+    "@swc/core": "1.10.1",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^22.13.1",
+    "commitlint-config-ali": "^1.1.0",
+    "eslint": "^9.19.0",
+    "eslint-config-ali": "16.0.0-beta.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "hot-hook": "^0.4.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "pino-pretty": "^13.0.0",
+    "prettier": "^3.4.2",
+    "prettier-config-ali": "^1.3.2",
+    "stylelint": "^16.14.1",
+    "stylelint-config-ali": "^2.1.1",
+    "stylelint-prettier": "^5.0.3",
+    "ts-node-maintained": "^10.9.5",
+    "typescript": "~5.7.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "strtok3": "8.0.1"
+    }
   },
   "hotHook": {
     "boundaries": [
@@ -68,14 +125,5 @@
   },
   "overrides": {
     "strtok3": "8.0.1"
-  },
-  "resolutions": {
-    "strtok3": "8.0.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "strtok3": "8.0.1"
-    }
-  },
-  "prettier": "@adonisjs/prettier-config"
+  }
 }
