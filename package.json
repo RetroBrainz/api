@@ -11,8 +11,9 @@
   "funding": "https://github.com/sponsors/RetroBrainz",
   "license": "AGPL-3.0-only",
   "author": {
-    "name": "鹤仙",
-    "email": "guoyunhe.gyh@alibaba-inc.com"
+    "name": "Guo Yunhe",
+    "email": "i@guoyunhe.me",
+    "url": "https://guoyunhe.me/"
   },
   "type": "module",
   "imports": {
