@@ -14,3 +14,5 @@ router.get('/', async () => {
     hello: 'world',
   };
 });
+
+router.resource('games', () => import('#controllers/game'));
