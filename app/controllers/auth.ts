@@ -24,7 +24,7 @@ export default class AuthController {
   }
 
   async logout({ auth }: HttpContext) {
-    await User.accessTokens.delete(auth.user, auth.user.currentAccessToken.identifier);
+    await User.accessTokens.delete(auth.user!, auth.user!.currentAccessToken.identifier);
     return {
       revoked: true,
     };
