@@ -18,4 +18,6 @@ node ace migration:fresh --seed
 
 ```bash
 sudo zypper install git mariadb nginx nodejs
+
+git clone git@github.com:RetroBrainz/api.git
 ```
