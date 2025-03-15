@@ -13,3 +13,9 @@ node ace generate:key
 
 node ace migration:fresh --seed
 ```
+
+## Deployment
+
+```bash
+sudo zypper install git mariadb nginx nodejs
+```
